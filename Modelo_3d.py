@@ -72,7 +72,7 @@ del df_sismos_err
 del df_sismos_no_err
 
 #Inyeccion de H2O
-iny=pd.read_csv(r'datasets\INYECCION_geo.csv',delimiter=';',decimal=',')
+iny=pd.read_csv(r'datasets\inyeccion_geo.csv',delimiter=';',decimal=',')
 iny=iny[:-1]
 
 inyec=[]
@@ -93,7 +93,7 @@ for name,lon,lat,alt in zip(iny['CAMPO'].apply(lambda x:str(x)),iny['X'],iny['Y'
     inyec.append(un)
 
 #Kale
-df_kale=pd.read_csv('datasets/Kale.csv')
+df_kale=pd.read_csv('datasets/kale.csv')
 df_kale['msnm']=[69]*3
 
 kale= go.Scatter3d(
@@ -115,22 +115,6 @@ x_pozo_inv_kale, y_pozo_inv_kale  = pozo_inv_kale['Longitud'].values[0], pozo_in
 h_pozo_inv_kale = 3.902 #km
 h_pozo_inv_kale_m = h_pozo_inv_kale*1000 #m
 r_ext = 2*h_pozo_inv_kale_m+20000 #m
-
-#Inyeccíon
-iny=pd.read_csv(r'datasets\INYECCION_geo.csv',delimiter=';',decimal=',')
-iny=iny[:-1]
-INYECCION=go.Scatter3d(z=[-1000 for i in iny['X']], x=iny['X'], y=iny['Y'],mode='markers',marker_symbol='diamond',
-                    name='Inyección BBL', marker=dict(
-                size=(iny['TOTAL_bbl'])/10000000,
-                color=(iny['TOTAL_bbl'])/1000000,                # set color to an array/list of desired values
-                colorscale='viridis',   # choose a colorscale
-                opacity=0.8,
-                cmax=((iny['TOTAL_bbl'])/1000000).max(),
-                cmin=((iny['TOTAL_bbl'])/1000000).min()),
-                hovertemplate=iny['CAMPO'].apply(lambda x:str(x))+'<br>'
-                        +iny['POZOS'].apply(lambda x:str(x))+'<br>'
-                        +iny['TOTAL_bbl'].apply(lambda x:str(x)),
-                showlegend=False)
 
 #Asignamos las dimensiones y ubicacion del cilindro interno y externo respectivamente
 r1 = 2*h_pozo_inv_kale_m /(111.1*1000) #Radio interno es dos veces la profundidad medida del pozo. De acuerdo con Resolución 40185 del 2020 del MME. Profundidad aproximada en pozo de investigación es 3902 m
@@ -395,7 +379,7 @@ Pozos = go.Scatter3d(
 )
 
 #Rezumaderos
-df_rezumaderos=pd.read_csv('datasets\REZUMADEROS_WGS84.txt',decimal=',',delimiter=';')
+df_rezumaderos=pd.read_csv('datasets\REZUMADEROS_WGS84_LBG.txt',decimal=',',delimiter=';')
 rez_txt=('Longitud:'+df_rezumaderos['X'].apply(lambda x:str(x))+'°'+
             '<br>'+'Latitud:'+df_rezumaderos['Y'].apply(lambda x:str(x))+'°'+
             '<br>'+'Elevacion:'+df_rezumaderos['Z'].apply(lambda x:str(x))+'msnm'+
@@ -419,7 +403,7 @@ rez = go.Scatter3d(
     )
 )
 #Poblaciones
-df_poblaciones=pd.read_csv('datasets/Poblaciones_1.csv',usecols=['Name','Longitud','Latitud','SAMPLE_1'])
+df_poblaciones=pd.read_csv('datasets/poblaciones.csv',usecols=['Name','Longitud','Latitud','SAMPLE_1'])
 Poblaciones = go.Scatter3d(
     x=df_poblaciones['Longitud'],
     y=df_poblaciones['Latitud'],
@@ -452,34 +436,26 @@ for name,lon,lat,alt in zip(df_poblaciones['Name'],df_poblaciones['Longitud'],df
     Pobl.append(un)
 
 #Carreteras
-# roads=pd.read_csv('datasets\Via_WGS84.txt',delimiter=';',decimal=',')
-# roads  =roads[(roads['LATITUD']>lai)&(roads['LATITUD']<las)&(roads['LONGITUD']>loi)&(roads['LONGITUD']<los)]
-viass=pd.read_csv('datasets\Vias_carreteras.csv')
+viass=pd.read_csv('datasets\Vias_LBG.csv')
 
-# ls_x,ls_y,ls_z=lin_list('datasets/fallas.csv') #Fallas
-# fallas=pd.read_csv('datasets/fallas.csv',decimal=',')
-# fallas['X']=fallas['X'].apply(lambda x:float(x))
-# fallas['Y']=fallas['Y'].apply(lambda x:float(x))
-# fallas['Z']=fallas['Z'].apply(lambda x:float(x))
-# fallas_1=pd.read_csv('datasets/fallas_1.csv')
-# fallas_1=fallas_1.drop_duplicates(subset=['LINE_ID'])
-faults=pd.read_csv('datasets\Fallas_geologicas.csv')
+#Fallas
+faults=pd.read_csv('datasets\Fallas_LBG.csv')
 faults=faults.drop('Unnamed: 0',axis=1)
 
-# ls_x_f,ls_y_f,ls_z_f=lin_list('datasets/campos.csv') #Campos
-campet=pd.read_csv('datasets\campos.csv',decimal=',')
+#Campos
+campet=pd.read_csv('datasets\campos_LBG.csv',decimal=',')
 campet['X']=campet['X'].apply(lambda x:float(x))
 campet['Y']=campet['Y'].apply(lambda x:float(x))
 campet['Z']=campet['Z'].apply(lambda x:float(x))
-campet_1=pd.read_csv('datasets/campos_1.csv')
+campet_1=pd.read_csv('datasets/campos_1_LBG.csv')
 campet_1=campet_1.drop_duplicates(subset=['LINE_ID'])
 
 # ls_x_s,ls_y_s,ls_z_s=lin_list('datasets/lineas.csv') #Lineas sismicas
-linsis=pd.read_csv('datasets\lineas.csv',decimal=',')
+linsis=pd.read_csv('datasets\lineas_LBG.csv',decimal=',')
 linsis['X']=linsis['X'].apply(lambda x:float(x))
 linsis['Y']=linsis['Y'].apply(lambda x:float(x))
 linsis['Z']=linsis['Z'].apply(lambda x:float(x))
-linsis_1=pd.read_csv('datasets/lineas_1.csv')
+linsis_1=pd.read_csv('datasets/lineas_1_LBG.csv')
 linsis_1=linsis_1.drop_duplicates(subset=['LINE_ID'])
 
 
@@ -494,13 +470,7 @@ Real=geology('datasets/BASE_CUATERNARIO.txt','purple','pink','Tope Grupo Real')
 
 
 
-df_new=pd.read_csv('datasets/UN_CRN_COLORS.csv',index_col=None)
-
-# SISMICA=img_3d("assets/perfil_2.jpg",-76.2239,6.80483056000,-72.953083300,9.0807305600,4000,-15000)
-# SISMICA=img_3d("assets/perfil_2.jpg",-72.953083300,9.0807305600,-76.2239,6.80483056000,4000,-15000)
-# SISMICA=img_3d("assets/perfil_2.jpg",-76.2239,9.0807305600,-72.953083300,6.80483056000,4000,-15000)
 SISMICA=img_3d("assets/perfil_2.jpg",-74.115,7.58,-72.954,6.806,4300,-20000)
-# SISMICA=img_3d("assets/perfil_2.jpg",-72.954,6.806,-74.115,7.586,4000,-20000)
 
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SUPERHERO])
@@ -728,26 +698,26 @@ app.layout = html.Div([
 
 def update_figure(TOPO,EXG,START_DATE,END_DATE,MAGN,DEPTH,SEISMO,CART,PETRO,INY,GEOL):
         fig=go.Figure()
-        if np.isin('GEO', GEOL):
-            if TOPO==0:
-                DISM=0
-            else:
-                DISM=0.01
-            fig.add_trace(go.Surface(z=z_topo,showscale=False, x=x_topo, y=y_topo,colorscale=['black','black'],lighting=dict(ambient=0.3,diffuse=0.5),
-                    showlegend=False,opacity=TOPO-DISM,name='Topografía'))
-            directory = 'datasets\CSV_UNIDADES'
-            for filename in os.scandir(directory):
-                if filename.is_file():
-                    name=(str(filename.path).split('\\'))[-1]
-                    name=name.replace('.csv','')
-                    name=name.replace('_','?')
-                    df_1=df_new[df_new['SimboloUC']==name]
-                    text='Edad: '+np.array(df_1['Edad'].apply(lambda x:str(x)))[0]+'<br>Descripción: '+np.array(df_1['Descripcio'].apply(lambda x:str(x)))[0]#+'<br>UGIntegrad: '+np.array(df_1['UGIntegrad'].apply(lambda x:str(x)))[0]
-                    text=str(text)
-                    fig.add_trace(geology_super(filename.path,np.array(df_1['Color'].apply(lambda x:str(x)))[0],name,text,TOPO))
+        # if np.isin('GEO', GEOL):
+        #     if TOPO==0:
+        #         DISM=0
+        #     else:
+        #         DISM=0.01
+        #     fig.add_trace(go.Surface(z=z_topo,showscale=False, x=x_topo, y=y_topo,colorscale=['black','black'],lighting=dict(ambient=0.3,diffuse=0.5),
+        #             showlegend=False,opacity=TOPO-DISM,name='Topografía'))
+        #     directory = 'datasets\CSV_UNIDADES'
+        #     for filename in os.scandir(directory):
+        #         if filename.is_file():
+        #             name=(str(filename.path).split('\\'))[-1]
+        #             name=name.replace('.csv','')
+        #             name=name.replace('_','?')
+        #             df_1=df_new[df_new['SimboloUC']==name]
+        #             text='Edad: '+np.array(df_1['Edad'].apply(lambda x:str(x)))[0]+'<br>Descripción: '+np.array(df_1['Descripcio'].apply(lambda x:str(x)))[0]#+'<br>UGIntegrad: '+np.array(df_1['UGIntegrad'].apply(lambda x:str(x)))[0]
+        #             text=str(text)
+        #             fig.add_trace(geology_super(filename.path,np.array(df_1['Color'].apply(lambda x:str(x)))[0],name,text,TOPO))
             
-        else:
-            fig.add_trace(go.Surface(z=z_topo,showscale=False, x=x_topo, y=y_topo,colorscale=['green','greenyellow','saddlebrown','saddlebrown','saddlebrown','saddlebrown','snow','snow'],
+        # else:
+        fig.add_trace(go.Surface(z=z_topo,showscale=False, x=x_topo, y=y_topo,colorscale=['green','greenyellow','saddlebrown','saddlebrown','saddlebrown','saddlebrown','snow','snow'],
                     showlegend=False,opacity=TOPO,name='Topografía',lighting=dict(ambient=0.3,diffuse=0.5)))
         df_sismos_1=df_sismos[(df_sismos['FECHA - HORA UTC']<=END_DATE)&(df_sismos['FECHA - HORA UTC']>=START_DATE)&
         (df_sismos['MAGNITUD']>=MAGN[0])&(df_sismos['MAGNITUD']<=MAGN[1])

@@ -1,14 +1,14 @@
-OID_,Name,FolderPath,SymbolID,AltMode,Base,Snippet,PopupInfo,HasLabel,LabelID,Longitud,Latitud
-"0",Aguachica,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.617,8.307
-"0",Barrancabermeja,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.855,7.064
-"0",Bucaramanga,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.114,7.098
-"0",Lebrija,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.217,7.115
-"0",Morales,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.870,8.274
-"0",Puerto Wilches,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.892,7.345
-"0",Sabana de Torres,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.499,7.393
-"0",San Alberto,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.394,7.761
-"0",San Martin,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.512,8.002
-"0",San Pablo,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.925,7.476
-"0",Simiti,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.946,7.957
-"0",Yondó,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",-73.910,7.009
-"0",Gamarra,,"0","0",0.00000000000,,,"0","0",-73.741,8.325
+OID_,Name,FolderPath,SymbolID,AltMode,Base,Snippet,PopupInfo,HasLabel,LabelID,SAMPLE_1,Longitud,Latitud
+"0",Aguachica,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",157,-73.617,8.307
+"0",Barrancabermeja,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",82,-73.855,7.064
+"0",Bucaramanga,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",904,-73.114,7.098
+"0",Lebrija,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",1014,-73.217,7.115
+"0",Morales,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",38,-73.870,8.274
+"0",Puerto Wilches,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",65,-73.892,7.345
+"0",Sabana de Torres,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",134,-73.499,7.393
+"0",San Alberto,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",116,-73.394,7.761
+"0",San Martin,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",112,-73.512,8.002
+"0",San Pablo,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",68,-73.925,7.476
+"0",Simiti,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",50,-73.946,7.957
+"0",Yondó,Poblaciones.kmz/Poblaciones,"0","-1",0.00000000000,,,"-1","0",70,-73.910,7.009
+"0",Gamarra,,"0","0",0.00000000000,,,"0","0",41,-73.741,8.325
